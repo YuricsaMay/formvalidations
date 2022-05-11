@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
             AsyncSnapshot<List<ProductoModel>> snapshot) {
           if (snapshot.hasData) {
             final productos = snapshot.data;
-            return ListView.builder(
+            return ListView.builder( 
                 itemCount: productos!.length,
                 itemBuilder: (context, i) => 
                     _crearItem(context, productos[i]));
@@ -54,11 +54,11 @@ class _HomePageState extends State<HomePage> {
           child: Column(children: <Widget>[
             (producto.fotoUrl == null)
                 ? Image(
-                    image: AssetImage('assets/nopude.png'),
+                    image: AssetImage('assets/no-image.png'),
                     width: 500.0,
                   )
                 : FadeInImage(
-                    placeholder: AssetImage('assets/jar.gif'),
+                    placeholder: AssetImage('assets/jar-loading.gif'),
                     image: NetworkImage(producto.fotoUrl!),
                     height: 600.0,
                     width: double.infinity,

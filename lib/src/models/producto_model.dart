@@ -19,9 +19,9 @@ class ProductoModel {
 
 
   String? id;
-  String titulo;
-  double valor;
-  bool disponible;
+  String? titulo;
+  double? valor;
+  bool? disponible;
   String? fotoUrl;
 
   

@@ -95,7 +95,7 @@ class _ProductoPageState extends State<ProductoPage> {
   Widget _crearDisponible() {
     return SwitchListTile(
         
-        value: producto.disponible,
+        value: producto.disponible!,
         title: Text('Disponible'),
         activeColor: Colors.deepPurple,
         onChanged: (value) {
@@ -174,7 +174,7 @@ class _ProductoPageState extends State<ProductoPage> {
     PickedFile? pickedFile = await ImagePicker().getImage(
       source: ImageSource.camera,
       maxWidth: 1800,
-      maxHeight: 1800,
+      maxHeight: 1800, 
     );
     if (pickedFile != null) {
       producto.fotoUrl = null;
