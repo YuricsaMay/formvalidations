@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:formvalidations/src/bloc/provider.dart';
+import 'package:formvalidations/src/providers/usuario_provider.dart';
 
 class RegistroPage extends StatelessWidget {
+
+final usuarioProvider = new UsuarioProvider();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +134,7 @@ class RegistroPage extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                   icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
-                  hintText: 'maria.yuricsa.may.pech@gmail.com',
+                  hintText: 'mariamay@gmail.com',
                   labelText: 'Correo electronico',
                   counterText: snapshot.data,
                   errorText: fas),
@@ -172,7 +176,7 @@ class RegistroPage extends StatelessWidget {
         stream: bloc.formValiStream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return ElevatedButton(
-            onPressed: snapshot.hasData ? () => _login(bloc, context) : null,
+            onPressed: snapshot.hasData ? () => _register(bloc, context) : null,
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -193,11 +197,14 @@ class RegistroPage extends StatelessWidget {
         });
   }
 
-  _login(LoginBloc bloc, BuildContext context) {
-    print('----------------------------------------------');
-    print('Email: ${bloc.email}');
-    print('Password: ${bloc.password}');
-    print('----------------------------------------------');
-    Navigator.pushReplacementNamed(context, 'home');
+  _register(LoginBloc bloc, BuildContext context) {
+    //print('----------------------------------------------');
+    //print('Email: ${bloc.email}');
+    //print('Password: ${bloc.password}');
+    //print('----------------------------------------------');
+    
+    usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
+    
+    //Navigator.pushReplacementNamed(context, 'home');
   }
 }
