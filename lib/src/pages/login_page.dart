@@ -204,6 +204,8 @@ final usuarioProvider = new UsuarioProvider();
     //print('----------------------------------------------');
    
    usuarioProvider.login(bloc.email, bloc.password);
+   
+   
    // Navigator.pushReplacementNamed(context, 'home');
   }
 }
