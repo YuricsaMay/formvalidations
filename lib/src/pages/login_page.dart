@@ -3,6 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:formvalidations/src/bloc/provider.dart';
 import 'package:formvalidations/src/providers/usuario_provider.dart';
 
+import '../utils/utils.dart';
+
 class LoginPage extends StatelessWidget {
 
 final usuarioProvider = new UsuarioProvider();
@@ -197,15 +199,19 @@ final usuarioProvider = new UsuarioProvider();
         });
   }
 
-  _login(LoginBloc bloc, BuildContext context) {
+  _login(LoginBloc bloc, BuildContext context)async {
    // print('----------------------------------------------');
     //print('Email: ${bloc.email}');
     //print('Password: ${bloc.password}');
     //print('----------------------------------------------');
    
-   usuarioProvider.login(bloc.email, bloc.password);
+   Map info= await usuarioProvider.login(bloc.email, bloc.password);
    
-   
-   // Navigator.pushReplacementNamed(context, 'home');
+   if(info ['ok']){
+    Navigator.pushReplacementNamed(context, 'home');
+  }else{
+    mostrarAlerta(context,info['mensaje']);
   }
+  }
+
 }
